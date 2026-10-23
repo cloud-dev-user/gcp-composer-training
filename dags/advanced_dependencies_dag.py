@@ -15,7 +15,7 @@ def create_dynamic_task(task_id):
 with DAG(
     dag_id="advanced_dependencies_dag",
     default_args=default_args,
-    schedule_interval=None,
+    schedule=None,
     catchup=False
 ) as dag:
 

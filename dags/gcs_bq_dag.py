@@ -9,7 +9,7 @@ default_args = {
     'retries': 1,
 }
 
-BUCKET_NAME = 'us-central1-composer-small-be81d71a-bucket'
+BUCKET_NAME = '<YOUR_COMPOSER_BUCKET>'  # your Composer environment's bucket name
 SOURCE_OBJECT = 'data/sample.csv'
 BQ_DATASET = 'my_dataset_r2'
 BQ_TABLE = 'demo_composer'
@@ -20,7 +20,7 @@ def log_upload():
 with DAG(
     dag_id='gcs_to_bq_example',
     default_args=default_args,
-    schedule_interval=None,
+    schedule=None,
     catchup=False,
     tags=['composer', 'gcs', 'bigquery'],
     description='DAG to load data from GCS to BigQuery and run a query',

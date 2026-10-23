@@ -1,0 +1,6 @@
+*.tfvars
+!terraform.tfvars.example
+.terraform/
+*.tfstate*
+__pycache__/
+large_data.*

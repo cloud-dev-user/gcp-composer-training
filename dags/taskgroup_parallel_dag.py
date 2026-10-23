@@ -11,7 +11,7 @@ default_args = {
 with DAG(
     dag_id='taskgroup_parallel_dag',
     default_args=default_args,
-    schedule_interval=None,
+    schedule=None,
     catchup=False
 ) as dag:
 

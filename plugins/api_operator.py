@@ -1,9 +1,7 @@
 import requests
 from airflow.models import BaseOperator
-from airflow.utils.decorators import apply_defaults
 
 class APIOperator(BaseOperator):
-    @apply_defaults
     def __init__(self, endpoint: str, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.endpoint = endpoint  # API endpoint

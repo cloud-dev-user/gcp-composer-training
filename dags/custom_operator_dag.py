@@ -4,7 +4,7 @@ from custom_operator import MyCustomOperator  # Import the custom operator
 
 with DAG(
     dag_id="custom_operator_example",
-    schedule_interval="@daily",
+    schedule="@daily",
     start_date=datetime(2025, 1, 1),
     catchup=False
 ) as dag:

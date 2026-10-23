@@ -1,11 +1,11 @@
 provider "google-beta" {
-  project = "example-project"
-  region  = "us-central1"
+  project = var.project_id
+  region  = var.region
 }
 
 resource "google_project_service" "composer_api" {
   provider = google-beta
-  project = "example-project"
+  project = var.project_id
   service = "composer.googleapis.com"
   // Disabling Cloud Composer API might irreversibly break all other
   // environments in your project.
@@ -24,7 +24,7 @@ resource "google_service_account" "custom_service_account" {
 
 resource "google_project_iam_member" "custom_service_account" {
   provider = google-beta
-  project  = "example-project"
+  project  = var.project_id
   member   = format("serviceAccount:%s", google_service_account.custom_service_account.email)
   // Role for Public IP environments
   role     = "roles/composer.worker"
@@ -34,12 +34,14 @@ resource "google_service_account_iam_member" "custom_service_account" {
   provider = google-beta
   service_account_id = google_service_account.custom_service_account.name
   role = "roles/composer.ServiceAgentV2Ext"
-  member = "serviceAccount:service-gcp-v1-project@cloudcomposer-accounts.iam.gserviceaccount.com"
+  member = "serviceAccount:service-${var.project_number}@cloudcomposer-accounts.iam.gserviceaccount.com"
 }
 
 resource "google_composer_environment" "example_environment" {
+  depends_on = [google_project_service.composer_api, google_service_account_iam_member.custom_service_account]
   provider = google-beta
-  name = "example-environment"
+  name   = var.environment_name
+  region = var.region
 
   config {
 

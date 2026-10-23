@@ -12,7 +12,7 @@ def create_dynamic_task(task_id):
 with DAG(
     dag_id="dynamic_dag_example",
     description="Dynamic DAG with advanced dependencies",
-    schedule_interval="@daily",
+    schedule="@daily",
     start_date=datetime(2025, 1, 1),
     catchup=False
 ) as dag:
