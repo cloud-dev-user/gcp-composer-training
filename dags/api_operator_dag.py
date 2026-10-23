@@ -1,10 +1,10 @@
 from airflow import DAG
 from datetime import datetime
-from operators.api_operator import APIOperator
+from api_operator import APIOperator
 
 with DAG(
     dag_id="api_operator_example",
-    schedule_interval="@daily",
+    schedule="@daily",
     start_date=datetime(2025, 1, 1),
     catchup=False
 ) as dag:

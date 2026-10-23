@@ -9,7 +9,7 @@ from datetime import datetime
 
 with DAG(
     dag_id="bigquery_large_data_pipeline",
-    schedule_interval="@daily",
+    schedule="@daily",
     start_date=datetime(2025, 1, 1),
     catchup=False,
     tags=["bigquery", "large-data"]

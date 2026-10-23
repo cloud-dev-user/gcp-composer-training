@@ -10,7 +10,7 @@ default_args = {
 with DAG(
     dag_id='simple_composer_dag',
     default_args=default_args,
-    schedule_interval='@daily',
+    schedule='@daily',
     catchup=False,
     tags=['example', 'composer'],
     description='A simple DAG to test Composer',
